@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Apache Commons Text
+Bundle-SymbolicName: org.apache.commons.text;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: The Apache Software Foundation
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ClassPath: commons-text-1.1.jar,
+ .
+Export-Package: org.apache.commons.text,
+ org.apache.commons.text.diff,
+ org.apache.commons.text.similarity,
+ org.apache.commons.text.translate
+Require-Bundle: org.eclipse.epsilon.common.dt;bundle-version="1.4.0"

@@ -1,0 +1,58 @@
+/*
+ * Copyright (c) 2016-2019 ÉTS
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *     
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */ 
+
+/**
+ * @author: Andrés Paz
+ */
+
+package ca.ets.sofeess.checsdm4uss.guidelinecompliance
+
+import "http://www.etsmtl.ca/sofeess/checsdm/mappings/1.0"
+import "http://www.eclipse.org/uml2/5.0.0/UML"
+import "http://www.etsmtl.ca/sofeess/breesse/simulink/1.0"
+
+/*
+ * Guideline			av_0010: Expression of triggers appearing in both UML and Stateflow transitions
+ * (ID: Title)
+ * 
+ * Priority			Mandatory
+ * 
+ * Scope				UML and Stateflow
+ * 
+ * Prerequisites		None
+ * 
+ * Description		If a transition appears in both a UML state machine and Stateflow chart, then the name of the Stateflow condition variable must be a subset of 
+ * 					the UML trigger event name.
+ * 
+ * Rationale			This guideline is intended to allow a mapping to be established between a UML state machine and a Stateflow chart.
+ */
+
+@Constraint(targetEditorId = "ca.ets.sofeess.checsdm.mappings.presentation.MappingsEditorID",
+	severity = "warning",
+	message = "[av_0010] The Stateflow trigger should perhaps be a subset of the event name $umlTrigger$.",
+	key = {mapping}
+) // Find triggers that have not been mapped possibly due to having invalid formats
+pattern matchingTriggerInvalid(mapping : Mapping, umlTrigger : Trigger, sfwTrigger : SFWTrigger) {
+ 	Mapping.left(mapping, umlTrigger); // left side is a UML trigger
+ 	Mapping.right(mapping, sfwTrigger); // right side is a Stateflow trigger
+ 	Mapping.matching(mapping, false); // the triggers are not mapped
+ 	Trigger.event(umlTrigger, event);
+    Event.name(event, umlEventName);
+ 	SFWTrigger.statement(sfwTrigger, sfwTriggerStatement);
+ 	check(
+ 		!umlEventName.contains(sfwTriggerStatement.substring(1, sfwTriggerStatement.length() - 1)) && !(umlEventName.startsWith("after") && sfwTriggerStatement.startsWith("after"))
+ 	); // the triggers are not equivalent relative time events
+} // or the Stateflow condition variable is not a subset of the UML trigger event name

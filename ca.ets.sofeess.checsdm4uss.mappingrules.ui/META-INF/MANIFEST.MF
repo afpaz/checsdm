@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: checsdm4uss Mapping Rules UI
+Bundle-SymbolicName: ca.ets.sofeess.checsdm4uss.mappingrules.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: ca.ets.sofeess.checsdm4uss.mappingrules.ui.MappingRulesUIPlugin
+Bundle-Vendor: École de Technologie Supérieure
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources;bundle-version="3.12.0",
+ org.eclipse.core.expressions;bundle-version="3.6.0",
+ org.eclipse.emf.ecore;bundle-version="2.13.0",
+ org.eclipse.ant.core;bundle-version="3.5.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy

@@ -1,0 +1,72 @@
+/*
+ * Copyright (c) 2016-2019 ÉTS
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *     
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */ 
+
+/**
+ * @author: Andrés Paz
+ */
+
+package ca.ets.sofeess.checsdm4uss.guidelinecompliance
+
+import "http://www.etsmtl.ca/sofeess/breesse/simulink/1.0"
+
+/*
+ * Guideline			av_0005: Naming of elements in Simulink and Stateflow models
+ * (ID: Title)
+ * 
+ * Priority			Mandatory
+ * 
+ * Scope				Simulink and Stateflow
+ * 
+ * Prerequisites		None
+ * 
+ * Description		All elements in Simulink and Stateflow models that can be named must have a name.
+ * 
+ * Rationale			Finding matches between UML, Simulink and Stateflow models relies on naming.
+ * 
+ */
+
+@Constraint(targetEditorId = "ca.ets.sofeess.breesse.simulink.presentation.SimulinkEditorID",
+	severity = "error",
+	message = "[av_0005] The element must have a name.",
+	key = {simulinkElement}
+) // Find Simulink elements that can be named but are not
+pattern simulinkElementEmptyName(simulinkElement : SimulinkElement) {
+	Block(simulinkElement);
+	neg find simulinkElementName(simulinkElement);
+} or {
+	Port(simulinkElement);
+	neg find simulinkElementName(simulinkElement);
+} or {
+	State(simulinkElement);
+	neg find simulinkElementName(simulinkElement);
+} or {
+	Function(simulinkElement);
+	neg find simulinkElementName(simulinkElement);
+} or {
+	Data(simulinkElement);
+	neg find simulinkElementName(simulinkElement);
+} or {
+	ContainableTruthTable(simulinkElement);
+	neg find simulinkElementName(simulinkElement);
+}
+
+// Find the Simulink elements that have a name
+pattern simulinkElementName(simulinkElement : SimulinkElement) {
+	SimulinkElement.name(simulinkElement, name);
+	check (
+		name.matches(".+")
+	);
+}

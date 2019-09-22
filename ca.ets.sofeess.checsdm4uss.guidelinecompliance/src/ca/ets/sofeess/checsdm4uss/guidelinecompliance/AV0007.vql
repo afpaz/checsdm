@@ -1,0 +1,77 @@
+/*
+ * Copyright (c) 2016-2019 ÉTS
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *     
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */ 
+
+/**
+ * @author: Andrés Paz
+ */
+
+package ca.ets.sofeess.checsdm4uss.guidelinecompliance
+
+import "http://www.etsmtl.ca/sofeess/breesse/simulink/1.0"
+
+/*
+ * Guideline			av_0007: Decomposition type for Stateflow chart and composite state
+ * (ID: Title)
+ * 
+ * Priority			Recommended
+ * 
+ * Scope				Stateflow
+ * 
+ * Prerequisites		None
+ * 
+ * Description		A Stateflow chart or composite state should have a parallel (AND) decomposition and at least one parallel state owning a set of vertices and 
+ * 					transitions that define a behaviour fragment.
+ * 
+ * Rationale			A UML state machine and composite state denote a set of orthogonal behaviour fragments with the use of regions. The state machine and composite 
+ * 					state must at least define one region. Thus, this guideline is intended to reduce ambiguities when mapping a UML state machine or composite 
+ * 					state to a Stateflow chart or composite state, respectively. The use of a parallel decomposition and parallel states is semantically equivalent 
+ * 					to that of UML orthogonal regions. When the state machine or composite state define only one region this guideline can be elided.
+ */
+
+@Constraint(targetEditorId = "ca.ets.sofeess.breesse.simulink.presentation.SimulinkEditorID",
+	severity = "info",
+	message = "[av_0007] Chart $chart$ should have a parallel (AND) decomposition and at least one parallel state owning a set of vertices and transitions that define a behaviour fragment.",
+	key = {chart}
+) // Find charts with an invalid decomposition
+pattern stateflowChartDecompositionInvalid(chart : Chart) {
+    Chart.decomposition(chart, ::EXCLUSIVE_OR); // decomposition is Exclusive/Or
+} or {
+	Chart.decomposition(chart, ::PARALLEL_AND); // decomposition is Parallel/And
+	0 == count find stateflowChartStates(chart, _);  // but have no nested states
+}
+
+// Find the nested states of a chart
+pattern stateflowChartStates(chart : Chart, state : State) {
+    Chart.children(chart, state);
+}
+
+@Constraint(targetEditorId = "ca.ets.sofeess.breesse.simulink.presentation.SimulinkEditorID",
+	severity = "info",
+	message = "[av_0007] Composite state $state$ should have a parallel (AND) decomposition and at least one parallel state owning a set of vertices and transitions that define a behaviour fragment.",
+	key = {state}
+) // Find composite states with an invalid decomposition
+pattern stateflowCompositeStateDecompositionInvalid(state : State) {
+	State.decomposition(state, ::EXCLUSIVE_OR); // decomposition is Exclusive/Or
+	find stateflowCompositeStateStates(state, _); // and the state is a composite state
+} or {
+	State.decomposition(state, ::PARALLEL_AND); // decomposition is Parallel/And
+	0 == count find stateflowCompositeStateStates(state, _); // but the state is not a composite state
+}
+
+// Find the nested states of a composite state
+pattern stateflowCompositeStateStates(compositeState : State, subState : State) {
+    State.children(compositeState, subState);
+}

@@ -1,0 +1,76 @@
+/*
+ * Copyright (c) 2016-2019 ÉTS
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *     
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */ 
+
+/**
+ * @author: Andrés Paz
+ */
+
+package ca.ets.sofeess.checsdm4uss.guidelinecompliance
+
+import epackage "http://www.etsmtl.ca/sofeess/breesse/simulink/1.0"
+
+/*
+ * Guideline			av_0006: Naming of Simulink Inport and Outport blocks
+ * (ID: Title)
+ * 
+ * Priority			Recommended
+ * 
+ * Scope				Simulink
+ * 
+ * Prerequisites		MAAB Style Guideline jc_0211: Usable characters for Inport block and Outport block
+ * 					MAAB Style Guideline jm_0010: Port block names in Simulink models
+ * 
+ * Description		The names of Simulink Inport and Outport blocks must end with the suffixes _in and _out, respectively.
+ * 
+ * Rationale			Finding matches between UML, Simulink and Stateflow models relies on naming.
+ */
+
+@Constraint(targetEditorId = "ca.ets.sofeess.breesse.simulink.presentation.SimulinkEditorID",
+	severity = "error",
+	message = "[av_0006] Inport $inport$ must start with the prefix In_.",
+	key = {inport}
+) // Find inports with an invalid name
+pattern simulinkInportNameFormatInvalid(inport : InPort) {
+	InPort.name(inport, name);
+	find simulinkPortSupportedParent(inport, _); // only find inports of supported block types
+	check (
+		!name.startsWith("In_") // names doesn't have prefix In_
+	);
+}
+
+@Constraint(targetEditorId = "ca.ets.sofeess.breesse.simulink.presentation.SimulinkEditorID",
+	severity = "error",
+	message = "[av_0006] Outport $outport$ must start with the prefix Out_.",
+	key = {outport}
+) // Find outports with an invalid name
+pattern simulinkOutportNameFormatInvalid(outport : OutPort) {
+	OutPort.name(outport, name);
+	find simulinkPortSupportedParent(outport, _); // only find outports of supported block types
+	check (
+		!name.startsWith("Out_") // names doesn't have prefix Out_
+	);
+}
+
+// Find the port's parent
+pattern simulinkPortSupportedParent(port : Port, parent : SubSystem) {
+	Port.block(port, parent);
+	neg find simulinkUnsupportedSubsystemBlockTypes(parent); // exclude unsupported subsystem types: block and model references
+}
+
+// Find subsystems of type Reference
+pattern simulinkUnsupportedSubsystemBlockTypes(subsystem : Reference) {
+	Reference(subsystem);
+}

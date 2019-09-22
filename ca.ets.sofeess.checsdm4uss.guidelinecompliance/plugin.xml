@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?><!--
+  Copyright (c) 2016-2019 ÉTS
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+      https://www.apache.org/licenses/LICENSE-2.0
+      
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+--><plugin>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0003" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0003" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0003">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.umlNamedElementEmptyName"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.umlNamedElementName"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.namedElementIsLiteralSpecification"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.namedElementIsValueSpecification"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0004" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0004" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0004">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.umlForkJoinInvalid"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.umlForkJoinValid"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.umlForkJoinConnected"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.vertexOutgoingTransition"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0005" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0005" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0005">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.simulinkElementEmptyName"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.simulinkElementName"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0006" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0006" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0006">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.simulinkInportNameFormatInvalid"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.simulinkOutportNameFormatInvalid"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.simulinkPortSupportedParent"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.simulinkUnsupportedSubsystemBlockTypes"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0007" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0007" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0007">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.stateflowChartDecompositionInvalid"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.stateflowChartStates"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.stateflowCompositeStateDecompositionInvalid"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.stateflowCompositeStateStates"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0008" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0008" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0008">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.umlTriggerFormatInvalid"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0009" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0009" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0009">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.stateflowTriggerFormatInvalid"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0010" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0010" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0010">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.matchingTriggerInvalid"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0011" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0011" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0011">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.umlGuardFormatInvalid"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0012" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0012" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0012">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.stateflowGuardFormatInvalid"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0013" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0013" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0013">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.umlActionFormatInvalid"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0014" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0014" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0014">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.stateflowActionFormatInvalid"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0015" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0015" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0015">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.matchingActionInvalid"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0017" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0017" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0017">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.umlForkJoinIncorrectUsage"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.umlParallelPath"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.stateIsComposite"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0018" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0018" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0018">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.simulinkPortDataTypeInvalid"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.simulinkPortDataTypeUnset"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.simulinkDataTypeSet"/>
+    </group>
+  </extension>
+  <extension id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0019" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0019" id="ca.ets.sofeess.checsdm4uss.guidelinecompliance.AV0019">
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.umlPortConjugationInvalid"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.umlPortsAreConnected"/>
+      <query-specification fqn="ca.ets.sofeess.checsdm4uss.guidelinecompliance.connectors"/>
+    </group>
+  </extension>
+</plugin>

@@ -1,0 +1,77 @@
+/*
+ * Copyright (c) 2016-2019 ÉTS
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *     
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */ 
+
+/**
+ * @author: Andrés Paz
+ */
+
+package ca.ets.sofeess.checsdm4uss.guidelinecompliance
+
+import "http://www.eclipse.org/uml2/5.0.0/UML"
+
+/*
+ * Guideline			av_0019: Conjugation of a UML Port
+ * (ID: Title)
+ * 
+ * Priority			Mandatory
+ * 
+ * Scope				UML
+ * 
+ * Prerequisites		None
+ * 
+ * Description		The value of the isConjugated property of a UML port must be set accordingly depending on the port's purpose.
+ *  					· If the port is used to provide an interface, then the value of the isConjugated property must be set to false.
+ *  					· If the port is used to require an interface, then the value of the isConjugated property must be set to true.
+ * 
+ * Rationale			The value of the isConjugated property specifies the way that the provided and required interfaces are derived from the port's type.
+ * 
+ * See Also			UML 2.5.1 subclause 11.8.14 Port
+ */
+
+@Constraint(targetEditorId = "org.eclipse.uml2.uml.editor.presentation.UMLEditorID",
+	severity = "error",
+	message = "[av_0019] Port $port$ must be conjugated",
+	key = {port}
+) // Find ports with an invalid conjugation setting
+pattern umlPortConjugationInvalid(port : Port, usage : Usage) { // directly requiring an interface
+    Port.isConjugated(port, false);
+    Usage.client(usage, port);
+    Usage.supplier(usage, interface);
+    Interface(interface);
+} or { // indirectly requiring an interface
+	Port.type(port, interface);
+	Port.isConjugated(port, false);
+	Port(outerPort);
+	Port.type(outerPort, interface);
+	Usage.client(usage, outerPort);
+	Usage.supplier(usage, interface);
+	find umlPortsAreConnected+(port, outerPort);
+}
+
+// Find connectors connecting the innerPort and the outerPort
+pattern umlPortsAreConnected(innerPort : Port, outerPort : Port) {
+	Port.type(innerPort, interface);
+	Port.type(outerPort, interface);
+	find connectors(innerPort, connector);
+	Connector.end(connector, connectorEnd);
+	ConnectorEnd.role(connectorEnd, outerPort);
+}
+
+// Find connectors for a port
+pattern connectors(port : Port, connector : Connector) {
+	Connector.end(connector, connectorEnd);
+	ConnectorEnd.role(connectorEnd, port);
+}

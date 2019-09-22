@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: checsdm4uss Design Guideline Compliance
+Bundle-SymbolicName: ca.ets.sofeess.checsdm4uss.guidelinecompliance;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Export-Package: ca.ets.sofeess.checsdm4uss.guidelinecompliance,
+  ca.ets.sofeess.checsdm4uss.guidelinecompliance.util
+Require-Bundle: ca.ets.sofeess.checsdm.mappings,
+  ca.ets.sofeess.breesse.simulink,
+  org.eclipse.uml2.uml,
+  org.eclipse.emf.ecore,
+  org.eclipse.viatra.query.runtime,
+  org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Import-Package: org.apache.log4j
+Bundle-Vendor: École de Technologie Supérieure
