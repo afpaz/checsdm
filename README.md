@@ -1,2 +1,3 @@
 # checsdm
-checsdm: Consistency of Heterogeneous Embedded Control System Design Models
+
+Consistency of Heterogeneous Embedded Control System Design Models
